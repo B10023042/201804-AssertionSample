@@ -1,7 +1,7 @@
 ﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System;
 using System.Collections.Generic;
-
+using ExpectedObjects;
 namespace AssertionSample
 {
     [TestClass]
@@ -13,7 +13,13 @@ namespace AssertionSample
         public void CompareCustomer()
         {
             var actual = customerRepo.Get();
-
+            var expected = new Customer()
+            {
+                Id = 2,
+                Age = 18,
+                Birthday = new DateTime(1990, 1, 26)
+            };
+            expected.ToExpectedObject().ShouldEqual(actual);
             //how to assert customer?
         }
 
